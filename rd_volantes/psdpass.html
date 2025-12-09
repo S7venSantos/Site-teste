@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RD Volantes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="imagem_logo/logo.png">
+</head>
+<body>
+    <header>
+        <div class="container_top">
+            <nav class="menu_top">
+                <ul>
+                    <li><a href="index.html">Principal</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="logo">
+                <a href="index.html"><img src="imagem_logo/logo.png" alt="Logo RD Volantes"></a>
+            </div>
+            <div class="text">
+                <h2>Excelência em Volantes Automotivos</h2>
+                <p>Fabricação própria, qualidade garantida <br> e uma linha completa de soluções para sua empresa.</p>
+            </div>
+        </section>
+
+        <section class="cards">
+            <div class="card msg1">
+                <h3>Alta Durabilidade</h3>
+                <p>Volantes fabricados com materiais de primeira linha.</p>
+            </div>
+            
+            <div class="card msg2">
+                <h3>Modelos Variados</h3>
+                <p>Linha completa para diferentes veículos e aplicações.</p>
+            </div>
+            
+            <div class="card msg3">
+                <h3>Entrega Rápida</h3>
+                <p>Logística eficiente para todo o Brasil.</p>
+            </div>
+        </section>
+
+        <div class="categoria">
+            <h2>LINHA DE VOLANTES</h2>
+            <p>Passeio e Pesada</p>
+        </div>
+
+        <div class="catalogo">
+            <div class="item-card">
+                <img src="volantes/pesada/1620 grande VI0655TB.png" alt="Volante modelo X">
+                <div class="titulo">VOLANTE LOTSE UNIVERSAL GT330 EM COURO - 3 CORES</div>
+                <div class="preco" data-preco="819.00">R$ 819,00</div>
+                <div class="codigo">VE1189PT</div>
+
+                <div class="card-bottom-actions">
+                    <input type="number" min="1" value="1" class="item-qtd">
+                    <button class="btn-add-carrinho"
+                        data-descricao="VOLANTE LOTSE UNIVERSAL GT330 EM COURO - 3 CORES"
+                        data-codigo="VE1189PT"
+                        data-preco="819.00">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional item-cards omitted for brevity -->
+
+        </div>
+    </main>
+
+    <a href="carrinho.html" class="carrinho-flutuante" id="icone-carrinho">🛒</a>
+    <button id="btn-gerar-pdf">Gerar PDF</button>
+
+    <footer>
+        © 2025 RD Volantes — Todos os direitos reservados
+    </footer>   
+
+    <script src="script.js"></script>
+    <script src="src/pdf/pdfGenerator.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+[
+    {
+        "codigo": "VI0270TB",
+        "descricao": "Uno Way / Vivace - Universal C/ Tampa + Cubo",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/uno vivace VI0270TB.png"
+    },
+    {
+        "codigo": "VI1186TBMB",
+        "descricao": "Gol 4 Bolas Preto G1/G2/G3/G4 - Marron",
+        "preco": 160.96,
+        "imagem": "volantes/passeio/4 bola marrom VI1186TBMR.png"
+    },
+    {
+        "codigo": "VI1184TBPT",
+        "descricao": "Gol 4 Bolas Preto G1/G2/G3/G4 - Preto",
+        "preco": 146.48,
+        "imagem": "volantes/passeio/4 bola preto VI1184TBPT.png"
+    },
+    {
+        "codigo": "VI0467TB",
+        "descricao": "Celta 2 pontas Antigo C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/celta 2 pontas VI0467TB.png"
+    },
+    {
+        "codigo": "VI0265TB",
+        "descricao": "Uno Fire / Palio / Siena / Strada C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/fire VI0265TB.png"
+    },
+    {
+        "codigo": "VI1155TB",
+        "descricao": "Fox/ CrossFox/ SpaceFox C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/fox VI1155TB.png"
+    },
+    {
+        "codigo": "VI1161TB",
+        "descricao": "Gol G2 Bolinha/ Parati/ Saveiro C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/g2 VI1161TB.png"
+    },
+    {
+        "codigo": "VI1167TB",
+        "descricao": "Gol G3/ Parati/ Saveiro C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/g3 VI1167TB.png"
+    },
+    {
+        "codigo": "VI1169TB",
+        "descricao": "Gol G4/ Parati/ Saveiro C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/g4 VI1169TB.png"
+    },
+    {
+        "codigo": "VI1171TB",
+        "descricao": "Gol G5 / Saveiro/ Fox/ Voyage C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/g5 VI1171TB.png"
+    },
+    {
+        "codigo": "VI0279TB",
+        "descricao": "Idea Nova / Palio/ Siena / Strada C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/idea VI0279TB.png"
+    },
+    {
+        "codigo": "VI0662TB",
+        "descricao": "Novo Ford Cargo C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/novo ford cargo VI0662TB.jpeg"
+    },
+    {
+        "codigo": "NG130012",
+        "descricao": "Golf Novo GTI G2/G3/G4 C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/novo golf g2 g3 g4 NG130012.png"
+    },
+    {
+        "codigo": "NG130212",
+        "descricao": "Golf Novo GTI G5/G6 C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/novo golf g5 g6 NG130212.png"
+    },
+    {
+        "codigo": "VI0279PRTB",
+        "descricao": "Idea Nova / Palio/ Siena / Strada Com Aplique Lateral Prata C/ Tampa",
+        "preco": 145.35,
+        "imagem": "volantes/passeio/novo idea VI0279PRTB.png"
+    },
+    {
+        "codigo": "VI0257TB",
+        "descricao": "Palio Novo C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/palio novo VI0257TB.png"
+    },
+    {
+        "codigo": "VI0267TB",
+        "descricao": "Uno Mille / EP / EX / Fiorino C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/passeio/uno mille VI0267TB.png"
+    },
+    {
+        "codigo": "VI0270TB",
+        "descricao": "Uno Way / Vivace  -  Universal ",
+        "preco": 125.40,
+        "imagem": "volantes/passeio/uno vivace VI0270TB.png"
+    },
+    {
+        "codigo": "VI1155TB",
+        "descricao": "Voyage G2/G3/G4",
+        "preco": 125.40,
+        "imagem": "volantes/passeio/VI001TB.png"
+    },
+    {
+        "codigo": "VI002TB",
+        "descricao": "Voyage G5/G6/ Fox",
+        "preco": 129.40,
+        "imagem": "volantes/passeio/voyage g5 g6 fox VI002TB.png"
+    }
+]

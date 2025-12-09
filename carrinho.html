@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho — RD Volantes</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="imagem_logo/logo.png">
+</head>
+
+<body>
+
+<header>
+    <div class="container_top">
+        <nav class="menu_top">
+            <ul>
+                <li><a href="index.html">Principal</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ÍCONE FLUTUANTE DO CARRINHO PARA A ANIMAÇÃO FUNCIONAR -->
+<div id="icone-carrinho" class="carrinho-flutuante">
+    🛒
+</div>
+
+<main>
+
+    <section class="hero">
+        <div class="logo">
+            <a href="index.html"><img src="imagem_logo/logo.png" alt="Logo RD Volantes"></a>
+        </div>
+        <div class="text">
+            <h2>Seu Carrinho</h2>
+            <p>Confira os itens selecionados antes de enviar seu orçamento.</p>
+        </div>
+    </section>
+
+    <!-- ====================== CARRINHO ====================== -->
+    <section class="carrinho-container">
+        <!-- campo para nome do cliente (antes de "Itens no Carrinho") -->
+        <div class="cliente-orcamento">
+            <div class="cliente-header">
+                <h3>Informações do Cliente</h3>
+                <p class="cliente-sub">Preencha os dados abaixo para constar no orçamento</p>
+            </div>
+            <div class="cliente-body">
+                <div class="cliente-field">
+                    <label for="clienteNome" class="cliente-label">Nome</label>
+                    <input id="clienteNome" type="text" placeholder="Nome completo do cliente">
+                </div>
+                <div class="cliente-field">
+                    <label for="clienteCNPJ" class="cliente-label">CNPJ</label>
+                    <input id="clienteCNPJ" type="text" placeholder="00.000.000/0000-00">
+                </div>
+                <div class="cliente-field">
+                    <label for="clienteEmail" class="cliente-label">E‑mail</label>
+                    <input id="clienteEmail" type="email" placeholder="email@exemplo.com">
+                </div>
+                <div class="cliente-field">
+                    <label for="clienteTelefone" class="cliente-label">Telefone</label>
+                    <input id="clienteTelefone" type="tel" placeholder="(99) 99999‑9999">
+                </div>
+            </div>
+        </div>
+
+        <div class="topo-cliente">
+            <h2>Itens no Carrinho</h2>
+        </div>
+
+        <div id="listaCarrinho" class="carrinho-lista"></div>
+        <!-- elemento de listagem (adiciona sem alterar visual por padrão) -->
+        <div id="carrinho-list" class="lista-carrinho"></div>
+
+        <div class="carrinho-total">
+            Total: <span id="valorTotal">R$ 0,00</span>
+        </div>
+
+        <div class="acoes-carrinho">
+            <!-- botão não altera layout, apenas adiciona a opção -->
+            <button id="btn-gerar-pdf" class="btn-gerar-pdf" type="button">Gerar PDF do Carrinho</button>
+        </div>
+
+        <button id="btnEnviarOrcamento" class="btn-whats-carrinho">
+            Enviar pelo WhatsApp
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    © 2025 RD Volantes — Todos os direitos reservados
+</footer>
+
+<!-- incluir biblioteca jsPDF antes do script principal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+<script>
+    console.log(localStorage.getItem("carrinho"));
+</script>
+
+</body>
+</html>
+x

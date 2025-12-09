@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - RD Volantes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container_top">
+            <nav class="menu_top">
+                <ul>
+                    <li><a href="index.html">Principal</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="carrinho">
+            <h2>Seu Carrinho de Compras</h2>
+            <div id="itens-carrinho">
+                <!-- Os itens do carrinho serão inseridos aqui dinamicamente -->
+            </div>
+            <div class="total">
+                <h3>Total: <span id="total-preco">R$ 0,00</span></h3>
+            </div>
+            <button id="btn-gerar-pdf">Gerar PDF</button>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 RD Volantes — Todos os direitos reservados
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="src/pdf/pdfGenerator.js"></script>
+</body>
+</html>

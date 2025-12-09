@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RD Volantes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="imagem_logo/logo.png">
+</head>
+
+<body class="catalog-page">
+    <header>
+        <div class="container_top">
+            <nav class="menu_top">
+                <ul>
+                    <li><a href="index.html">Principal</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero_catalogo">
+            <div class="logo">
+                <a href="index.html"><img src="imagem_logo/logo.png" alt="Logo RD Volantes"></a>
+            </div>
+            <div class="text_catalogo">
+                <h2>Excelência em Volantes Automotivos</h2>
+                <p>Fabricação própria, qualidade garantida <br> e uma linha completa de soluções para sua empresa.</p>
+            </div>
+        </section>
+
+        <section class="cards">
+            <div class="card msg1">
+                <h3>Alta Durabilidade</h3>
+                <p>Volantes fabricados com materiais de primeira linha.</p>
+            </div>
+            
+            <div class="card msg2">
+                <h3>Modelos Variados</h3>
+                <p>Linha completa para diferentes veículos e aplicações.</p>
+            </div>
+            
+            <div class="card msg3">
+                <h3>Entrega Rápida</h3>
+                <p>Logística eficiente para todo o Brasil.</p>
+            </div>
+        </section>
+
+        <div class="categoria">
+            <h2>LINHA DE VOLANTES</h2>
+            <p>Pesada</p>
+        </div>
+
+        <div class="catalog-wrapper">
+            <aside class="catalog-sidebar" aria-labelledby="categ-label">
+                <nav class="catalog-nav" aria-label="Categorias">
+                    <div class="sidebar-header" id="categ-label">
+                        <h3>CATEGORIAS</h3>
+                    </div>
+                    <ul class="category-list">
+                        <li>
+                            <a class="category-btn active" href="psdpass.html" aria-current="page">
+                                <span class="cat-icon" aria-hidden="true">🚚</span>
+                                <span class="cat-label">Pesados</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="category-btn" href="categoria-passeio.html">
+                                <span class="cat-icon" aria-hidden="true">🚗</span>
+                                <span class="cat-label">Passeio</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="category-btn" href="categoria-cubos.html">
+                                <span class="cat-icon" aria-hidden="true">⚙️</span>
+                                <span class="cat-label">Cubos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <div class="catalog-main">
+                <div class="catalogo" id="catalogo-container">
+                    <!-- Os produtos serão carregados aqui dinamicamente via JSON -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <a href="carrinho.html" class="carrinho-flutuante" id="icone-carrinho">🛒</a>
+
+    <footer>
+        © 2025 RD Volantes — Todos os direitos reservados
+    </footer>   
+
+    <script src="script.js"></script>
+</body>
+</html>

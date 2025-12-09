@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RD Volantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="imagem_logo/logo.png">
+</head>
+
+<body class="index-page">
+    <div id="intro-overlay">
+        <video id="intro-video" autoplay muted playsinline>
+            <source src="video/logo-reall.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <header>
+        <div class="container_top">
+            <nav class="menu_top">
+                <ul>
+                    <li><a href="index.html">Principal</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="text">
+                <h2>Conforto, precisão e estilo em cada direção</h2>
+                <p>A <strong>RD Volantes</strong> entrega volantes de alta performance para quem busca dirigir com mais segurança, controle e personalidade.</p>
+            </div>
+        </section>
+
+        <!-- Divisor elegante entre hero e cards -->
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <section class="cards">
+            
+            
+            <div class="card msg1">
+                <h3>Alta Durabilidade</h3>
+                <p>Volantes fabricados com materiais de primeira linha.</p>
+            </div>
+            
+            <div class="card msg2">
+                <h3>Modelos Variados</h3>
+                <p>Linha completa para diferentes veículos e aplicações.</p>
+            </div>
+            
+            <div class="card msg3">
+                <h3>Entrega Rápida</h3>
+                <p>Logística eficiente para todo o Brasil.</p>
+            </div>
+            </section>
+
+        <section class="category-slides">
+            <!-- Slide Pesados -->
+            <div class="category-slide">
+                <div class="slide-image">
+                    <img src="hero_img/1620pq.png" alt="Volantes Pesados">
+                </div>
+                <div class="slide-content">
+                    <h3>Pesados</h3>
+                    <p>Volantes robustos para caminhões e veículos de grande porte. Durabilidade e conforto para longas jornadas.</p>
+                    <a href="psdpass.html" class="slide-btn">Ver Catálogo</a>
+                </div>
+            </div>
+
+            <!-- Slide Passeio -->
+            <div class="category-slide reverse">
+                <div class="slide-image">
+                    <img src="hero_img/cruze.png" alt="Volantes Passeio">
+                </div>
+                <div class="slide-content">
+                    <h3>Passeio</h3>
+                    <p>Linha completa para carros de passeio. Estilo, ergonomia e personalidade para o seu veículo.</p>
+                    <a href="categoria-passeio.html" class="slide-btn">Ver Catálogo</a>
+                </div>
+            </div>
+
+            <!-- Slide Cubos -->
+            <div class="category-slide">
+                <div class="slide-image">
+                    <img src="hero_img/cubos.png" alt="Cubos">
+                </div>
+                <div class="slide-content">
+                    <h3>Cubos</h3>
+                    <p>Cubos adaptadores de alta precisão para instalação perfeita do seu volante.</p>
+                    <a href="categoria-cubos.html" class="slide-btn">Ver Catálogo</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <section id="contato" class="contato">
+        <h2>Entre em Contato</h2>
+        <p>Fale conosco para orçamentos, dúvidas ou pedidos.</p>
+
+        <div class="contato-grid">
+            <div class="contato-info">
+                <h3>Informações de Contato</h3>
+
+                <p><strong>Email:</strong> rdvolantes.adm@rdvolantes..br</p>
+                <p><strong>Telefone:</strong> (12) 99727-1120</p>
+
+                <h4>Horário de atendimento</h4>
+                <p>Segunda a Quinta — 07h00 às 17h <br> Sexta — 07h00 às 16h</p>
+
+                <a class="btn-ligar" href="tel:12997271120">📞 Ligar Agora</a>
+                <a class="btn-whatsapp" 
+                href="https://wa.me/5512997271120?text=Olá!%20Tenho%20interesse%20nos%20produtos."
+                target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                    Falar no WhatsApp
+                </a>
+            </div>
+
+            <!-- FORMULÁRIO PARA ENVIAR NO WHATSAPP -->
+            <div class="contato-form">
+                <h3>Envie seus dados</h3>
+                <form id="formContato">
+                    <input type="text" id="nome" placeholder="Seu nome" required>
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                    <input type="text" id="cidade" placeholder="Sua cidade" required>
+                    <button type="submit" class="btn-enviar">
+                        Enviar pelo WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 RD Volantes — Todos os direitos reservados
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

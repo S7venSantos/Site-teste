@@ -1,0 +1,80 @@
+[
+    {
+        "codigo": "VI0655TB",
+        "descricao": "Mercedes Benz 1620 Grande C/ Tampa",
+        "preco": 136.26,
+        "imagem": "volantes/pesada/1620 grande VI0655TB.png"
+    },
+    {
+        "codigo": "VI0656TB",
+        "descricao": "Mercedes Benz 1620 Pequeno C/ Tampa",
+        "preco": 136.26,
+        "imagem": "volantes/pesada/1620 pequeno VI0656TB.png"
+    },
+    {
+        "codigo": "VI1151TB",
+        "descricao": "Volks Delivery C/ Tampa / Worker",
+        "preco": 154.24,
+        "imagem": "volantes/pesada/constelation VI1153TB.png"
+    },
+    {
+        "codigo": "VI1153TB",
+        "descricao": "Volks Constelation C/ Tampa",
+        "preco": 154.24,
+        "imagem": "volantes/pesada/delivery VI1151TB.png"
+    },
+    {
+        "codigo": "VI0477TB",
+        "descricao": "Corsa Classic Sedan/ Pickup/ Super/ Wagon C/ Tampa",
+        "preco": 127.18,
+        "imagem": "volantes/pesada/corsa classic VI0477TB.png"
+    },
+    {
+        "codigo": "VI0478TB",
+        "descricao": "D20 Após 93 C/ Tampa",
+        "preco": 154.24,
+        "imagem": "volantes/pesada/d 20 VI0428TB.png"
+    },
+    {
+        "codigo": "VI0369TB",
+        "descricao": "F1000/ F4000/ Pampa C/Tampa",
+        "preco": 146.90,
+        "imagem": "volantes/pesada/f 1000 VI0369TB.png"
+    },
+    {
+        "codigo": "VI0662TB",
+        "descricao": "NOVO FORD CARGO C/TAMPA",
+        "preco": 142.90,
+        "imagem": "volantes/pesada/ford cargo VI0662TB.png"
+    },
+    {
+        "codigo": "VI1181TB",
+        "descricao": "Kombi C/ Tampa",
+        "preco": 157.39,
+        "imagem": "volantes/pesada/kombi VI1181TB.png"
+    },
+    {
+        "codigo": "PGTUN007",
+        "descricao": "Peugeot - Universal Prata",
+        "preco": 141.00,
+        "imagem": "volantes/pesada/peugeot PGTUN001.png"
+    },
+    {
+        "codigo": "DAKAR011",
+        "descricao": "VOLANTE EM CAMURÇA LOTSE DAKAR COM TARJA",
+        "preco": 889.00,
+        "imagem": "volantes/pesada/track field g2 g3 g4 TRF110011.png"
+    },
+    {
+        "codigo": "DAKAR012",
+        "descricao": "VOLANTE EM CAMURÇA LOTSE DAKAR COM TARJA",
+        "preco": 889.00,
+        "imagem": "volantes/pesada/track field g5 g6 TRF111011.png"
+    },
+    {
+        "codigo": "VI0270TB",
+        "descricao": "Uno Way / Vivace - Universal C/ Tampa + Cubo",
+        "preco": 127.18,
+        "imagem": "volantes/pesada/uno vivace VI0270TB.png"
+    }
+]

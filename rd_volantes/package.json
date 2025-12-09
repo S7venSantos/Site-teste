@@ -1,0 +1,25 @@
+{
+  "name": "rd_volantes",
+  "version": "1.0.0",
+  "description": "Catálogo de volantes automotivos com funcionalidade de carrinho de compras e geração de PDF.",
+  "main": "src/pdf/pdfGenerator.js",
+  "scripts": {
+    "start": "live-server .",
+    "build": "echo 'Build process not defined'",
+    "generate-pdf": "node src/pdf/pdfGenerator.js"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "keywords": [
+    "volantes",
+    "carrinho",
+    "pdf",
+    "jsPDF"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT"
+}
