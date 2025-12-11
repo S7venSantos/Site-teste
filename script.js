@@ -521,7 +521,115 @@ function setupIntroVideo() {
 }
 
 // ==================================
-// CARREGAMENTO DINÂMICO DE CATÁLOGO VIA JSON
+// CONFIGURAÇÃO GOOGLE SHEETS
+// ==================================
+// INSTRUÇÕES: Substitua o ID abaixo pelo ID da sua planilha do Google Sheets
+// O ID está na URL da planilha: https://docs.google.com/spreadsheets/d/SEU_ID_AQUI/edit
+const GOOGLE_SHEETS_ID = '1hlkmU8txN3b_CGw1OKJVeNaqUAaOZ4tGQsdM3J4QYok';
+
+// Mapeamento: nome do catálogo → nome da aba na planilha
+const SHEETS_ABAS = {
+    'catalogo-passeio.json': 'passeio',
+    'catalogo-pesado.json': 'pesado',
+    'catalogo-cubos.json': 'cubos',
+    'passeio-coloridos.json': 'coloridos'
+};
+
+// Define se usa Google Sheets (true) ou arquivos JSON locais (false)
+const USAR_GOOGLE_SHEETS = true;
+
+// ==================================
+// FUNÇÃO PARA PARSEAR CORES (formato simplificado ou JSON)
+// ==================================
+function parsearCores(coresString) {
+    if (!coresString) return null;
+    
+    const str = coresString.toString().trim();
+    
+    // Se começa com [ é JSON, tenta parsear
+    if (str.startsWith('[')) {
+        try {
+            return JSON.parse(str);
+        } catch (e) {
+            console.warn('Erro ao parsear JSON de cores:', e);
+            return null;
+        }
+    }
+    
+    // Formato simplificado: "NomeCor:Codigo:Hex, NomeCor2:Codigo2:Hex2"
+    // Exemplo: "Preto:VE001PT:#000000, Cinza:VE001CZ:#808080"
+    try {
+        const cores = [];
+        const partes = str.split(',');
+        
+        for (const parte of partes) {
+            const [nome, codigo, hex] = parte.trim().split(':');
+            if (nome && codigo && hex) {
+                cores.push({
+                    nome: nome.trim(),
+                    codigo: codigo.trim(),
+                    hex: hex.trim().startsWith('#') ? hex.trim() : '#' + hex.trim()
+                });
+            }
+        }
+        
+        return cores.length > 0 ? cores : null;
+    } catch (e) {
+        console.warn('Erro ao parsear cores simplificadas:', e);
+        return null;
+    }
+}
+
+// ==================================
+// CARREGAMENTO DE DADOS DO GOOGLE SHEETS
+// ==================================
+async function carregarDadosGoogleSheets(nomeAba) {
+    const url = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(nomeAba)}`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Erro ao carregar planilha: ${nomeAba}`);
+        
+        const text = await response.text();
+        // Remove o prefixo "google.visualization.Query.setResponse(" e o sufixo ");"
+        const jsonText = text.substring(47).slice(0, -2);
+        const data = JSON.parse(jsonText);
+        
+        // Converte os dados da planilha para o formato de produtos
+        const rows = data.table.rows;
+        const produtos = [];
+        
+        // Pula a primeira linha (cabeçalhos)
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].c;
+            if (cells && cells[0] && cells[0].v) {
+                const produto = {
+                    codigo: cells[0]?.v || '',
+                    descricao: cells[1]?.v || '',
+                    preco: parseFloat(cells[2]?.v) || 0,
+                    imagem: cells[3]?.v || ''
+                };
+                
+                // Verifica se tem coluna de cores (coluna E, índice 4)
+                if (cells[4] && cells[4].v) {
+                    produto.cores = parsearCores(cells[4].v);
+                }
+                
+                produtos.push(produto);
+            }
+        }
+        
+        console.log(`✅ ${produtos.length} produtos carregados do Google Sheets (${nomeAba})`);
+        return produtos;
+        
+    } catch (error) {
+        console.error(`Erro ao carregar Google Sheets (${nomeAba}):`, error);
+        throw error;
+    }
+}
+
+// ==================================
+// CARREGAMENTO DINÂMICO DE CATÁLOGO (GOOGLE SHEETS OU JSON)
 // ==================================
 async function carregarCatalogoJSON(arquivoJSON, containerId) {
     const container = document.getElementById(containerId);
@@ -531,11 +639,23 @@ async function carregarCatalogoJSON(arquivoJSON, containerId) {
     }
 
     try {
-        const response = await fetch(arquivoJSON);
-        if (!response.ok) throw new Error(`Erro ao carregar ${arquivoJSON}`);
+        let produtos;
         
-        const produtos = await response.json();
-        console.log(`✅ ${produtos.length} produtos carregados de ${arquivoJSON}`);
+        // Verifica se deve usar Google Sheets
+        if (USAR_GOOGLE_SHEETS && GOOGLE_SHEETS_ID !== 'COLE_SEU_ID_AQUI') {
+            const nomeAba = SHEETS_ABAS[arquivoJSON];
+            if (nomeAba) {
+                produtos = await carregarDadosGoogleSheets(nomeAba);
+            } else {
+                throw new Error(`Aba não mapeada para: ${arquivoJSON}`);
+            }
+        } else {
+            // Fallback: carrega do arquivo JSON local
+            const response = await fetch(arquivoJSON);
+            if (!response.ok) throw new Error(`Erro ao carregar ${arquivoJSON}`);
+            produtos = await response.json();
+            console.log(`✅ ${produtos.length} produtos carregados de ${arquivoJSON} (JSON local)`);
+        }
 
         container.innerHTML = ''; // Limpa o container
 
@@ -547,17 +667,19 @@ async function carregarCatalogoJSON(arquivoJSON, containerId) {
             const temCores = produto.cores && produto.cores.length > 0;
             const coresAttr = temCores ? `data-cores='${JSON.stringify(produto.cores)}'` : '';
             
+            const precoNum = parseFloat(produto.preco) || 0;
+            
             card.innerHTML = `
                 <img src="${produto.imagem}" alt="${produto.descricao}">
                 <div class="titulo">${produto.descricao}</div>
-                <div class="preco" data-preco="${produto.preco}">R$ ${produto.preco.toFixed(2)}</div>
+                <div class="preco" data-preco="${precoNum}">R$ ${precoNum.toFixed(2)}</div>
                 <div class="codigo">${produto.codigo}</div>
                 <div class="card-bottom-actions">
                     <input type="number" min="1" value="1" class="item-qtd">
                     <button class="btn-add-carrinho"
                         data-descricao="${produto.descricao}"
                         data-codigo="${produto.codigo}"
-                        data-preco="${produto.preco}"
+                        data-preco="${precoNum}"
                         ${coresAttr}>
                         Adicionar
                     </button>
@@ -653,4 +775,77 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("📋 Carrinho parseado:", safeGetCarrinho());
         renderCarrinhoPage();
     }
+    
+    // Setup formulário de contato WhatsApp (index.html)
+    setupFormContatoWhatsApp();
+    
+    // Setup botão enviar orçamento WhatsApp (carrinho.html)
+    setupBotaoOrcamentoWhatsApp();
 });
+
+// ==================================
+// WHATSAPP - FORMULÁRIO DE CONTATO (INDEX)
+// ==================================
+function setupFormContatoWhatsApp() {
+    const form = document.getElementById('formContato');
+    if (!form) return;
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nome = document.getElementById('nome')?.value || '';
+        const email = document.getElementById('email')?.value || '';
+        const cidade = document.getElementById('cidade')?.value || '';
+        
+        const mensagem = `Olá! Meu nome é ${nome}.%0A` +
+                        `E-mail: ${email}%0A` +
+                        `Cidade: ${cidade}%0A%0A` +
+                        `Gostaria de mais informações sobre os produtos.`;
+        
+        const telefone = '5512997271120';
+        const url = `https://wa.me/${telefone}?text=${mensagem}`;
+        
+        window.open(url, '_blank');
+    });
+}
+
+// ==================================
+// WHATSAPP - ORÇAMENTO DO CARRINHO
+// ==================================
+function setupBotaoOrcamentoWhatsApp() {
+    const btn = document.getElementById('btnEnviarOrcamento');
+    if (!btn) return;
+    
+    btn.addEventListener('click', function() {
+        const carrinho = safeGetCarrinho();
+        
+        if (carrinho.length === 0) {
+            alert('Seu carrinho está vazio!');
+            return;
+        }
+        
+        // Pega nome do cliente se existir
+        const nomeCliente = document.getElementById('nomeCliente')?.value || 'Cliente';
+        
+        // Monta lista de itens
+        let listaItens = carrinho.map(item => {
+            const preco = item.preco > 0 ? ` - R$ ${Number(item.preco).toFixed(2)}` : ' - Sob consulta';
+            return `• ${item.qtd}x ${item.codigo} - ${item.descricao}${preco}`;
+        }).join('%0A');
+        
+        // Calcula total
+        const total = carrinho.reduce((acc, item) => acc + (Number(item.preco) || 0) * (Number(item.qtd) || 1), 0);
+        const totalTexto = total > 0 ? `R$ ${total.toFixed(2)}` : 'Sob consulta';
+        
+        const mensagem = `*Orçamento RD Volantes*%0A%0A` +
+                        `*Cliente:* ${nomeCliente}%0A%0A` +
+                        `*Itens do Pedido:*%0A${listaItens}%0A%0A` +
+                        `*Total:* ${totalTexto}%0A%0A` +
+                        `Aguardo retorno!`;
+        
+        const telefone = '5512997271120';
+        const url = `https://wa.me/${telefone}?text=${mensagem}`;
+        
+        window.open(url, '_blank');
+    });
+}

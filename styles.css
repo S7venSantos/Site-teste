@@ -211,7 +211,8 @@ body.index-page footer {
 
 /* HEADER NORMAL */
 header {
-    background: #000000; /* header preto sólido */
+    background: #4c4b4b url('imagem_logo/logo.png') calc(100% - 30px) center no-repeat;
+    background-size: contain;
     color: white;
     padding: 10px 10px;          /* altura normal */
     display: flex;
@@ -225,12 +226,20 @@ header {
     backdrop-filter: blur(0px);
 }
 
-/* HEADER ENCOLHIDO AO ROLAR */
-header.scrolled {
+/* HEADER ENCOLHIDO */
+header.shrink {
     padding: 4px 10px;           /* 🔥 deixa mais fino */
     background: rgba(71, 70, 70, 0.75);
     backdrop-filter: blur(6px);
     box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+/* HEADER ENCOLHIDO AO ROLAR */
+header.scrolled {
+    padding: 4px 10px;           /* 🔥 deixa mais fino */
+    background: rgba(142, 141, 141, 0.75);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);    
 }
 
 /* Quando o header encolher, o conteúdo interno também encolhe */
@@ -1160,70 +1169,103 @@ body.catalog-page .catalogo {
     color: #000000 !important;
 }
 
-/* estilo profissional para área de informações do cliente */
+/* ===========================
+   INFORMAÇÕES DO CLIENTE - ESTILO SUAVE
+   =========================== */
 .cliente-orcamento {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.436);
-    padding: 14px 16px;
-    border-radius: 8px;
-    max-width: 880px;
-    margin: 8px 0 18px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid #e8e8e8;
+    border-left: 4px solid #d84040;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 20px 25px;
+    border-radius: 12px;
+    max-width: 100%;
+    margin: 15px 0 25px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.cliente-orcamento:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    border-color: #d84040;
+}
+
+.cliente-header {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
 }
 
 .cliente-header h3 {
-    margin: 0 0 4px;
+    margin: 0 0 5px;
     font-weight: 600;
-    font-size: 25px !important;
-    margin-bottom: 10px;
-    color: #ea0909 !important;
+    font-size: 1.25rem !important;
+    color: #333 !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cliente-header h3::before {
+    content: "👤";
+    font-size: 1.1rem;
 }
 
 .cliente-sub {
     margin: 0;
-    font-size: 12px;
-    color: #000000;
-}
-
-.cliente-sub {
-    margin: 4px 20px 0 0;
-    font-size: 15px;
-    color: #000000;
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .cliente-body {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-top: 10px;
-    flex-wrap: wrap; /* garante quebra em telas menores */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
+
 .cliente-field {
     display: flex;
-    gap: 8px;
-    align-items: center;
-    min-width: 220px;
-    flex: 1 1 220px;
+    flex-direction: column;
+    gap: 5px;
 }
-.cliente-field label {
-    min-width: 72px;
-    font-size: 13px;
-    color: #414e5a;
-    color: #000000;
-    font-weight: 700;
+
+.cliente-field label,
+.cliente-label {
+    font-size: 0.8rem;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
+
 .cliente-field input {
-    flex: 1;
-    padding: 9px 10px;
-    border-radius: 6px;
-    border: 1px solid #dfe6ea;
-    background: #fafbfc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
     font-size: 14px;
-    color: #22303f;
+    color: #333;
+    transition: all 0.2s ease;
 }
+
+.cliente-field input::placeholder {
+    color: #aaa;
+}
+
 .cliente-field input:focus {
-    border-color: #2b9cf2;
-    box-shadow: 0 4px 18px rgba(43,156,242,0.12);
+    outline: none;
+    border-color: #d84040;
+    box-shadow: 0 0 0 3px rgba(216, 64, 64, 0.1);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .cliente-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .cliente-orcamento {
+        padding: 15px 18px;
+    }
 }
 
 /* estilos apenas para a página do catálogo */

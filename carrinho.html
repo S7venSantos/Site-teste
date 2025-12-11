@@ -7,7 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="imagem_logo/logo.png">
+    <link rel="icon" type="image/png" href="imagem_logo/icon.png">
 </head>
 
 <body>
@@ -31,9 +31,6 @@
 <main>
 
     <section class="hero">
-        <div class="logo">
-            <a href="index.html"><img src="imagem_logo/logo.png" alt="Logo RD Volantes"></a>
-        </div>
         <div class="text">
             <h2>Seu Carrinho</h2>
             <p>Confira os itens selecionados antes de enviar seu orçamento.</p>
@@ -45,13 +42,15 @@
         <!-- campo para nome do cliente (antes de "Itens no Carrinho") -->
         <div class="cliente-orcamento">
             <div class="cliente-header">
-                <h3>Informações do Cliente</h3>
-                <p class="cliente-sub">Preencha os dados abaixo para constar no orçamento</p>
+                <div class="cliente-header-text">
+                    <h3>Informações do Cliente</h3>
+                    <p class="cliente-sub">Preencha para personalizar seu orçamento</p>
+                </div>
             </div>
             <div class="cliente-body">
                 <div class="cliente-field">
                     <label for="clienteNome" class="cliente-label">Nome</label>
-                    <input id="clienteNome" type="text" placeholder="Nome completo do cliente">
+                    <input id="clienteNome" type="text" placeholder="Nome completo">
                 </div>
                 <div class="cliente-field">
                     <label for="clienteCNPJ" class="cliente-label">CNPJ</label>
