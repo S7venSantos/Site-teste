@@ -1,4 +1,103 @@
 /* ===========================
+   SEÇÃO DE NOVIDADES/LANÇAMENTOS
+   =========================== */
+.novidades {
+    max-width: 1500px;
+    position: relative;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+.novidades-titulo {
+    color: #fff;
+    font-size: 2.0em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.novidades-banners {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 10px 0;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+}
+.novidade-banner {
+    min-width: 260px;
+    max-width: 300px;
+    width: 220px;
+    height: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00000000;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    margin: 0;
+    overflow: hidden;
+}
+/* Ajuste para deixar imagens e vídeos dos lançamentos mais largos */
+
+/* Permite que imagens e vídeos assumam sua largura natural */
+.novidade-banner img,
+    .novidade-banner video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
+    background: #111;
+    transition: transform 0.4s cubic-bezier(.4,1.3,.6,1);
+}
+
+/* Remove restrições do container para não limitar o conteúdo */
+.novidade-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/* Remove barra de rolagem do container principal de novidades, se existir */
+.novidades-banners {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    /* Para garantir que não apareça barra mesmo se o conteúdo for maior */
+    max-width: 100vw;
+}
+
+@media (max-width: 700px) {
+    .novidade-banner {
+        min-width: 48vw;
+        max-width: 70vw;
+        height: 56vw;
+    }
+}
+.novidade-banner:hover {
+    box-shadow: 0 6px 24px rgba(216,64,64,0.13);
+    transform: translateY(-2px) scale(1.03);
+}
+@media (max-width: 700px) {
+    .novidades {
+        padding: 18px 4vw 10px 4vw;
+    }
+}
+
+/* ===========================
    CONFIGURAÇÃO GERAL
    =========================== */
 
@@ -237,14 +336,14 @@ header.shrink {
 /* HEADER ENCOLHIDO AO ROLAR */
 header.scrolled {
     padding: 4px 10px;           /* 🔥 deixa mais fino */
-    background: rgba(142, 141, 141, 0.75);
+    background: rgba(192, 191, 191, 0.274);
     backdrop-filter: blur(6px);
     box-shadow: 0 3px 10px rgba(0,0,0,0.25);    
 }
 
 /* Quando o header encolher, o conteúdo interno também encolhe */
 header.scrolled .container_top {
-    padding: 5px 20px !important;   /* diminui muito */
+    padding: 2px 20px !important;   /* diminui muito */
 }
 
 header .container_top {
@@ -317,7 +416,7 @@ nav ul li a:after {
     top: 180%;
     width: 160%;
     height: 190%;
-    background-color: #ea0909; 
+    background-color: #ff0000; 
     border-radius: 50%;
     display: block;
     transition: all 1s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
@@ -326,18 +425,18 @@ nav ul li a:after {
 
 nav ul li a:hover {
     color: #ffffff;
-    border: 1px solid #ea0909;
+    border: 1px solid #ffffff;
 }
 
 nav ul li a:hover:before {
     top: -35%;
-    background-color: #ea0909;
+    background-color: #ff0000;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
 nav ul li a:hover:after {
     top: -45%;
-    background-color: #ea0909;
+    background-color: #c20808;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
@@ -913,7 +1012,6 @@ footer {
     font-weight: 600;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-    border: 1px solid #e6e6e6; /* cinza claro */
 }
 
 
@@ -1521,35 +1619,56 @@ body.catalog-page .catalog-wrapper {
 }
 
 .color-option {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 3px solid #ddd;
     cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    outline: none;
+    background-clip: padding-box;
+    margin-bottom: 18px;
 }
 
 .color-option:hover {
-    transform: scale(1.15);
+    transform: scale(1.13) translateY(-2px);
     border-color: #d84040;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 18px rgba(216,64,64,0.13);
+    z-index: 2;
 }
 
 .color-option .color-name {
     position: absolute;
-    bottom: -18px;
+    top: -28px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 9px;
-    color: #666;
+    font-size: 11px;
+    color: #222;
+    background: #fff;
+    border-radius: 6px;
+    padding: 2px 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     white-space: nowrap;
     opacity: 0;
-    transition: opacity 0.2s;
+    pointer-events: none;
+    transition: opacity 0.18s, top 0.18s;
+    font-weight: 500;
+    border: 1px solid #eee;
+    z-index: 10;
 }
 
 .color-option:hover .color-name {
     opacity: 1;
+    top: -36px;
+}
+/* Cor selecionada: borda de destaque */
+.color-option.selected {
+    border-color: #2d9c4b !important;
+    box-shadow: 0 0 0 3px #2d9c4b33, 0 6px 18px rgba(45,156,75,0.10);
+    transform: scale(1.18) translateY(-3px);
+    z-index: 3;
 }
 
 /* ===========================

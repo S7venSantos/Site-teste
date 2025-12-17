@@ -1,3 +1,54 @@
+console.log('Script carregado!');
+const GOOGLE_SHEETS_ID = '1hlkmU8txN3b_CGw1OKJVeNaqUAaOZ4tGQsdM3J4QYok';
+const GOOGLE_SHEETS_ID_LANCAMENTOS = '1xo_PUXRnlkT_VCYu0e0tndl3P4NaCvAJSV8qz61ng2E';
+// =============================
+// CARREGAR LANÇAMENTOS (STORIES) DA PLANILHA
+// =============================
+async function carregarLancamentos() {
+    const container = document.querySelector('.novidades-banners');
+    if (!container) {
+        console.warn('Container .novidades-banners não encontrado!');
+        return;
+    }
+    try {
+        console.log('🔄 Buscando lançamentos do Google Sheets...');
+        const dados = await carregarDadosGoogleSheets('lancamentos', GOOGLE_SHEETS_ID_LANCAMENTOS);
+        console.log('Lançamentos carregados:', dados);
+        container.innerHTML = '';
+        if (!dados || !dados.length) {
+            container.innerHTML = '<p style="color:#fff;text-align:center">Nenhum lançamento encontrado.</p>';
+            console.warn('Nenhum lançamento encontrado na planilha.');
+            return;
+        }
+        dados.forEach(item => {
+            let el;
+            const tipo = (item.tipo || '').toLowerCase();
+            if (tipo === 'vimeo' || (item.url || '').includes('player.vimeo.com')) {
+                el = document.createElement('div');
+                el.className = 'novidade-banner';
+                el.innerHTML = `<iframe src="${item.url}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;border-radius:12px;"></iframe>`;
+            } else if (tipo === 'video') {
+                el = document.createElement('div');
+                el.className = 'novidade-banner';
+                el.innerHTML = `<video src="${item.url}" controls autoplay muted playsinline poster="${item.poster || ''}"></video>`;
+            } else {
+                el = document.createElement('div');
+                el.className = 'novidade-banner';
+                el.innerHTML = `<img src="${item.url}" alt="Lançamento">`;
+            }
+            container.appendChild(el);
+        });
+    } catch (e) {
+        console.error('Erro ao carregar lançamentos:', e);
+        container.innerHTML = '<p style="color:#fff;text-align:center">Não foi possível carregar os lançamentos.</p>';
+    }
+}
+// Chama o carregamento dos lançamentos apenas no index
+// Garante que carregarLancamentos sempre é chamado na index
+if (document.body.classList.contains('index-page')) {
+    console.log('Chamando carregarLancamentos() na index-page');
+    carregarLancamentos();
+}
 // =============================
 // LISTA DE PRODUTOS (APENAS AQUI)
 // =============================
@@ -523,9 +574,6 @@ function setupIntroVideo() {
 // ==================================
 // CONFIGURAÇÃO GOOGLE SHEETS
 // ==================================
-// INSTRUÇÕES: Substitua o ID abaixo pelo ID da sua planilha do Google Sheets
-// O ID está na URL da planilha: https://docs.google.com/spreadsheets/d/SEU_ID_AQUI/edit
-const GOOGLE_SHEETS_ID = '1hlkmU8txN3b_CGw1OKJVeNaqUAaOZ4tGQsdM3J4QYok';
 
 // Mapeamento: nome do catálogo → nome da aba na planilha
 const SHEETS_ABAS = {
@@ -584,22 +632,38 @@ function parsearCores(coresString) {
 // CARREGAMENTO DE DADOS DO GOOGLE SHEETS
 // ==================================
 async function carregarDadosGoogleSheets(nomeAba) {
-    const url = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEETS_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(nomeAba)}`;
+    let planilhaId = GOOGLE_SHEETS_ID;
+    if (arguments.length > 1 && arguments[1]) {
+        planilhaId = arguments[1];
+    }
+    const url = `https://docs.google.com/spreadsheets/d/${planilhaId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(nomeAba)}`;
     
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Erro ao carregar planilha: ${nomeAba}`);
-        
         const text = await response.text();
-        // Remove o prefixo "google.visualization.Query.setResponse(" e o sufixo ");"
         const jsonText = text.substring(47).slice(0, -2);
         const data = JSON.parse(jsonText);
-        
-        // Converte os dados da planilha para o formato de produtos
         const rows = data.table.rows;
+        // Se for aba de lançamentos, processa diferente
+        if (nomeAba.toLowerCase() === 'lancamentos') {
+            const lancamentos = [];
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].c;
+                if (cells && cells[0] && cells[0].v && cells[1] && cells[1].v) {
+                    lancamentos.push({
+                        tipo: (cells[0]?.v || '').toLowerCase(),
+                        url: cells[1]?.v || '',
+                        ordem: Number(cells[3]?.v) || i+1
+                    });
+                }
+            }
+            lancamentos.sort((a, b) => a.ordem - b.ordem);
+            console.log(`✅ ${lancamentos.length} lançamentos carregados do Google Sheets (${nomeAba})`);
+            return lancamentos;
+        }
+        // Catálogo padrão
         const produtos = [];
-        
-        // Pula a primeira linha (cabeçalhos)
         for (let i = 0; i < rows.length; i++) {
             const cells = rows[i].c;
             if (cells && cells[0] && cells[0].v) {
@@ -609,19 +673,14 @@ async function carregarDadosGoogleSheets(nomeAba) {
                     preco: parseFloat(cells[2]?.v) || 0,
                     imagem: cells[3]?.v || ''
                 };
-                
-                // Verifica se tem coluna de cores (coluna E, índice 4)
                 if (cells[4] && cells[4].v) {
                     produto.cores = parsearCores(cells[4].v);
                 }
-                
                 produtos.push(produto);
             }
         }
-        
         console.log(`✅ ${produtos.length} produtos carregados do Google Sheets (${nomeAba})`);
         return produtos;
-        
     } catch (error) {
         console.error(`Erro ao carregar Google Sheets (${nomeAba}):`, error);
         throw error;
