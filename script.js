@@ -461,6 +461,13 @@ function setupPdfButton() {
             return;
         }
 
+        // Verificação de valor mínimo
+        const total = carrinho.reduce((s, it) => s + ((Number(it.preco) || 0) * (Number(it.qtd) || 0)), 0);
+        if (total < 2000) {
+            alert("Pedido mínimo para orçamento: R$ 2.000,00. Adicione mais itens ao carrinho para gerar o PDF.");
+            return;
+        }
+
         const doc = new window.jspdf.jsPDF();
 
         const marginLeft = 14;
@@ -527,7 +534,6 @@ function setupPdfButton() {
             y += 2;
         }
 
-        const total = carrinho.reduce((s, it) => s + ((Number(it.preco) || 0) * (Number(it.qtd) || 0)), 0);
         doc.setFontSize(12);
         doc.text(`Total: R$ ${total.toFixed(2)}`, marginLeft, y + 8);
 
